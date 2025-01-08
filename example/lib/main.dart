@@ -11,7 +11,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   void initState() {
     super.initState();
@@ -30,31 +29,27 @@ class _MyAppState extends State<MyApp> {
                 child: FlutterMap(
                   options: MapOptions(
                     // center: LatLng(39.7644863,-105.0199111), // line
-                    center: LatLng(35.611909, -82.440682),
-                    zoom: 14.0,
-
-
+                    initialCenter: LatLng(35.611909, -82.440682),
+                    initialZoom: 14.0,
                   ),
                   children: [
                     TileLayer(
-                      urlTemplate:
-                      'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
+                      urlTemplate: 'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
                       subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
                     ),
-                    FeatureLayer(FeatureLayerOptions("https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Congressional_Districts/FeatureServer/0",
-                      "polygon",
-                      onTap: (dynamic attributes, LatLng location) {
-                        print(attributes);
-                      },
-                      render: (dynamic attributes){
-                        return PolygonOptions(
-                            borderColor: Colors.red,
-                            color: Colors.black45,
-                            borderStrokeWidth: 2,
-                            isFilled:true
-                        );
-                      },
-                    ),)
+                    FeatureLayer(
+                      FeatureLayerOptions(
+                        "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Congressional_Districts/FeatureServer/0",
+                        "polygon",
+                        onTap: (dynamic attributes, LatLng location) {
+                          print(attributes);
+                        },
+                        render: (dynamic attributes) {
+                          return PolygonOptions(
+                              borderColor: Colors.red, color: Colors.black45, borderStrokeWidth: 2, isFilled: true);
+                        },
+                      ),
+                    )
                     // FeatureLayer(
                     //     FeatureLayerOptions(
                     //     "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/Landscape_Trees/FeatureServer/0",
@@ -87,7 +82,6 @@ class _MyAppState extends State<MyApp> {
                     //     print(attributes);
                     //   },
                     // ))
-
                   ],
                 ),
               ),
